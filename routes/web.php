@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +27,8 @@ Route::middleware([
         return view('dash.index');
     });
 });
+
+Route::get('/producto', [ProductoController::class, 'index']);
+
+//Route::view('/producto', 'client.producto');
+
