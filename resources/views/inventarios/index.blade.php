@@ -27,7 +27,7 @@
                 <td>{{ $inventario->Accion }}</td>
                 <td>{{ $inventario->Cantidad }}</td>
                 <td>{{ $inventario->producto->Nombre }}</td>
-                <td>{{ $inventario->usuario->Nombre }}</td>                
+                <td>{{ $inventario->usuario->name }}</td>                
                 <td>
                     {{-- <a href="{{ route('inventarios.edit', $inventario->id) }}" class="btn btn-sm btn-primary">Editar</a> --}}
                     <form action="{{ route('inventarios.destroy', $inventario->id) }}" method="POST" style="display: inline;">

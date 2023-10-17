@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class ProductoController extends Controller
 {
+    public function indexCliente()
+    {
+        $categorias = Categoria::all();
+        $productos = Producto::where('Stock', '>', 0)->get();
+        return view('client.producto', compact('productos','categorias'));
+    }
+
     public function index()
     {
         $productos = Producto::all();

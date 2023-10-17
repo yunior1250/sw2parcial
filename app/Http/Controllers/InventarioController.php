@@ -33,7 +33,22 @@ class InventarioController extends Controller
         // Obtiene el ID del usuario autenticado
         $idUsuario = Auth::user()->id;
 
-
+        if ($request->Accion === 'Agregar') {
+            $producto = Producto::find($request->idProducto);
+            $producto->Stock += $request->Cantidad;
+            $producto->save();
+        } else {
+            $producto = Producto::find($request->idProducto);
+            if ($request->Cantidad > $producto->Stock) {
+                $request->Cantidad = $producto->Stock;
+                $producto->Stock = 0;
+                $producto->save();
+            } else {
+                $producto->Stock -= $request->Cantidad;
+                $producto->save();
+            }
+        }
+        
         // Crea un nuevo inventario con el usuario autenticado
         Inventario::create([
             'Accion' => $request->Accion,
@@ -41,16 +56,6 @@ class InventarioController extends Controller
             'idProducto' => $request->idProducto,
             'idUsuario' => $idUsuario,
         ]);
-
-        if ($request->Accion === 'Agregar') {
-            $producto = Producto::find($request->idProducto);
-            $producto->Stock += $request->Cantidad;
-            $producto->save();
-        } else {
-            $producto = Producto::find($request->idProducto);
-            $producto->Stock -= $request->Cantidad;
-            $producto->save();
-        }
 
         return redirect()->route('inventarios.index')
             ->with('success', 'Inventario creado exitosamente.');

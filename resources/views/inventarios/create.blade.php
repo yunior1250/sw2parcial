@@ -16,7 +16,7 @@
         <label for="Accion">Accion:</label>
         <select name="Accion" id="Accion" class="form-control">            
             <option value="Agregar">Agregar</option>
-            <option value="Agregar">Quitar</option>            
+            <option value="Quitar">Quitar</option>            
         </select>
     </div>
 

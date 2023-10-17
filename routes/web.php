@@ -29,8 +29,10 @@ Route::middleware([
         return view('dash.index');
     });
 });
+Route::view('/principal', 'client.principal');
+//Route::get('/productoCliente', [ProductoController::class, 'indexCliente']);
+Route::get('/productoCliente', [ProductoController::class, 'indexCliente'])->name('productos.indexCliente');
 
-//Route::get('/producto', [ProductoController::class, 'index']);
 Route::resource('productos', ProductoController::class)->names('productos');
 Route::resource('categorias', CategoriaController::class)->names('categorias');
 Route::resource('inventarios', InventarioController::class)->names('inventarios');

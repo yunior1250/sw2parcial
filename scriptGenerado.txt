@@ -74,7 +74,7 @@ CREATE TABLE `Producto`
     PRIMARY KEY (`id`) -- Definido como clave primaria
 );
 
-CREATE TABLE `Usuario`
+/*CREATE TABLE `idUsuario`
 (
     `id` INT NOT NULL AUTO_INCREMENT, -- Cambiado a autoincrementable
     `Correo` VARCHAR(50) NULL,
@@ -82,7 +82,7 @@ CREATE TABLE `Usuario`
     `Password` VARCHAR(50) NULL,
     `Rol` INT NULL,
     PRIMARY KEY (`id`) -- Definido como clave primaria
-);
+);*/
 
 /* Create Foreign Key Constraints */
 
@@ -102,13 +102,13 @@ ALTER TABLE `Inventario`
 ;
 
 ALTER TABLE `Inventario` 
- ADD CONSTRAINT `FK_Inventario_Usuario`
-	FOREIGN KEY (`idUsuario`) REFERENCES `Usuario` (`id`) ON DELETE No Action ON UPDATE No Action
+ ADD CONSTRAINT `FK_Inventario_users`
+	FOREIGN KEY (`idUsuario`) REFERENCES `users` (`id`) ON DELETE No Action ON UPDATE No Action
 ;
 
 ALTER TABLE `Notaventa` 
- ADD CONSTRAINT `FK_Notaventa_Usuario`
-	FOREIGN KEY (`idUsuario`) REFERENCES `Usuario` (`id`) ON DELETE No Action ON UPDATE No Action
+ ADD CONSTRAINT `FK_Notaventa_users`
+	FOREIGN KEY (`idUsuario`) REFERENCES `users` (`id`) ON DELETE No Action ON UPDATE No Action
 ;
 
 ALTER TABLE `Producto` 

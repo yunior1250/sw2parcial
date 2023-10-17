@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Detalleventa;
 use App\Models\Notaventa;
 use App\Models\Producto;
 use App\Models\Usuario;
@@ -27,14 +28,14 @@ class NotaVentaController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'Fecha' => 'required',
+            //'Fecha' => 'required',
             'Id' => 'required',
             'Montototal' => 'required',
             'UsuarioID' => 'required',
         ]);
 
         Notaventa::create($data);
-
+        //Detalleventa::create();
         return redirect()->route('notaventa.index')->with('success', 'Nota de venta creada exitosamente.');
     }
 
