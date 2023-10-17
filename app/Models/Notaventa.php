@@ -9,14 +9,13 @@ class Notaventa extends Model
 {
     use HasFactory;
     protected $table = 'Notaventa';
-    protected $primaryKey = 'NotaventaID';
+    //protected $primaryKey = 'NotaventaID';
     public $timestamps = false;
 
     protected $fillable = [
-        'Fecha',
-        'Id',
+        'Fecha',        
         'Montototal',
-        'UsuarioID',
+        'idUsuario',
     ];
     
 }

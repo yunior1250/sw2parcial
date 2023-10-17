@@ -2,67 +2,68 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $productos = Producto::all();
-
-    // Pasa los productos a una vista y renderiza la vista
-    return view('client.producto', compact('productos'));
+        return view('productos.index', compact('productos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $categorias = Categoria::all();
+        return view('productos.create', compact('categorias'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
-    {
-        //
+    {           
+        $request->validate([
+            'Nombre' => 'required',
+            'Precio' => 'required',
+            'Stock' => 'required',
+            'Url' => 'required',
+            'idCategoria' => 'required',
+        ]);
+        
+
+        Producto::create($request->all());
+
+        return redirect()->route('productos.index')
+            ->with('success', 'Producto creado exitosamente.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit($id)
     {
-        //
+        $producto = Producto::find($id);
+        $categorias = Categoria::all();
+        return view('productos.edit', compact('producto', 'categorias'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'Nombre' => 'required',
+            'Precio' => 'required',
+            'Stock' => 'required',
+            'Url' => 'required',
+            'idCategoria' => 'required',
+        ]);
+
+        Producto::find($id)->update($request->all());
+
+        return redirect()->route('productos.index')
+            ->with('success', 'Producto actualizado exitosamente.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        Producto::where('ProductoID', $id)->delete();
+        return redirect()->route('productos.index')
+            ->with('success', 'Producto eliminado exitosamente.');
     }
 }

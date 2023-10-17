@@ -8,14 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Detalleventa extends Model
 {
     use HasFactory;
-    protected $table = 'Detalleventa';
-    protected $primaryKey = 'DetalleventaID';
+    protected $table = 'Detalleventa';    
     public $timestamps = false;
 
     protected $fillable = [
         'Cantidad',
-        'ProductoID',
-        'NotaventaID',
+        'idProducto',
+        'idNotaVenta',
     ];
     
     // Define las relaciones si las tienes

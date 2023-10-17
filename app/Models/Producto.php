@@ -9,14 +9,17 @@ class Producto extends Model
 {
     use HasFactory;
     protected $table = 'Producto';
-    protected $primaryKey = 'ProductoID';
+    //protected $primaryKey = 'ProductoID';
     public $timestamps = false;
     protected $fillable = [
-        'Id',
         'Nombre',
         'Precio',
         'Stock',
-        'CategoriaID',
+        'Url',
+        'idCategoria',
     ];
-    
+
+    public function categoria(){
+        return $this->belongsTo(Categoria::class, 'idCategoria', 'id');
+    }
 }
