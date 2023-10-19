@@ -35,7 +35,7 @@ Route::middleware([
         return view('dash.index');
     });
 });*/
-//Route::view('/principal', 'client.principal');
+Route::view('/principal', 'client.principal');
 Route::get('/productoCliente', [ProductoController::class, 'indexCliente'])->name('productos.indexCliente');
 Route::get('/compras', [NotaVentaController::class, 'index'])->name('notaventa.show');
 /*Route::post('/notaventa', [NotaVentaController::class, 'store'])->name('notaventa.store');
