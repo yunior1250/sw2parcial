@@ -40,8 +40,8 @@ CREATE TABLE `Detalleventa`
 (
     `id` INT NOT NULL AUTO_INCREMENT, -- Cambiado a autoincrementable
     `Cantidad` INT NULL,
-    `id` INT NULL,
-    `id` INT NULL,
+    `idNotaventa` INT NULL,
+    `idProducto` INT NULL,
     PRIMARY KEY (`id`) -- Definido como clave primaria
 );
 
@@ -58,9 +58,9 @@ CREATE TABLE `Inventario`
 CREATE TABLE `Notaventa`
 (
     `id` INT NOT NULL AUTO_INCREMENT, -- Cambiado a autoincrementable
-    `Fecha` DATETIME NULL,
+    `Fecha` DATE NULL,
     `Montototal` DOUBLE(10,2) NULL,
-    `id` INT NOT NULL,
+    `idUsuario` BIGINT UNSIGNED NOT NULL,
     PRIMARY KEY (`id`) -- Definido como clave primaria
 );
 
@@ -93,7 +93,7 @@ ALTER TABLE `Detalleventa`
 
 ALTER TABLE `Detalleventa` 
  ADD CONSTRAINT `FK_DetalleVenta_NotaVenta`
-	FOREIGN KEY (`idNotaVenta`) REFERENCES `Notaventa` (`id`) ON DELETE No Action ON UPDATE No Action
+	FOREIGN KEY (`idNotaventa`) REFERENCES `Notaventa` (`id`) ON DELETE No Action ON UPDATE No Action
 ;
 
 ALTER TABLE `Inventario` 

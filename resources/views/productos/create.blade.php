@@ -28,9 +28,11 @@
         </div>
 
         <div class="form-group">
-            <label for="Url">Url:</label>
-            <input type="text" name="Url" id="Url" class="form-control">
+            <label for="Url">Subir Imagen:</label>
+            {{-- <input type="text" name="Url" id="Url" class="form-control"> --}}
+            <input type="file" name="Url">
         </div>
+        
 
         <div class="form-group">
             <label for="idCategoria">Categoría:</label>

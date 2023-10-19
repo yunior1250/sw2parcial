@@ -23,6 +23,18 @@
     <div class="contenedor">
         @yield('content') <!-- Esta es la sección que se reemplazará en otras vistas -->
     </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2023 Licor House</p>
+            <ul class="social-links">
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Instagram</a></li>
+            </ul>
+        </div>
+    </footer>
+
 </body>
 
 </html>

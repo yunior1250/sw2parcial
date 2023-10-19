@@ -28,6 +28,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const addToCartButtons = document.querySelectorAll(".add-to-cart");
     const cartList = document.getElementById("cartList");
     const cartTotal = document.getElementById("cartTotal");
+    const buttonSubmit = document.getElementById("checkoutButton");
+
+    //document.getElementById("cartListField").value = JSON.stringify(cartItems);
+
 
     let cartItems = []; // Almacena los productos en el carrito
 
@@ -41,17 +45,18 @@ document.addEventListener("DOMContentLoaded", function () {
             //const product = getProductById(item.id);
 
             const cartItem = document.createElement("li");
-            cartItem.innerHTML = `
-                <img src="${item.url}" alt="${item.nombre}">
-                <h3>${item.nombre}</h3>
-                <p>Precio: ${item.precio} Bs</p>
-                <p>Cantidad: ${item.cantidad}</p>
+            cartItem.innerHTML = `                           
+                    <h5 name="id">${item.id}</h5>                
+                    <img src="${item.url}" name="url" alt="${item.nombre}">
+                    <h3 name="nombre">${item.nombre}</h3>
+                    <p name="precio">Precio: ${item.precio} Bs</p>
+                    <p name="cantidad">Cantidad: ${item.cantidad}</p>                               
             `;
             cartList.appendChild(cartItem);
             total += item.precio * item.cantidad;
         });
 
-        cartTotal.textContent = total.toFixed(2);
+        cartTotal.value = total.toFixed(2);
     }
 
 
@@ -63,8 +68,8 @@ document.addEventListener("DOMContentLoaded", function () {
             const productId = productData.id;
             const productName = productData.Nombre;
             const productUrl = productData.Url;
-            const productPrice = productData.Precio;      
-            const productStock = productData.Stock;      
+            const productPrice = productData.Precio;
+            const productStock = productData.Stock;
 
             const quantityInput = button.parentElement.querySelector(".quantity-input");
             const quantity = parseInt(quantityInput.value, 10);
@@ -86,6 +91,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 updateCart();
             }
         });
+    });
+
+    buttonSubmit.addEventListener("click", function () {
+        // Antes de enviar el formulario
+        document.getElementById("cartListField").value = JSON.stringify(cartItems);
     });
 
 

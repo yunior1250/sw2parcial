@@ -4,51 +4,71 @@ namespace App\Http\Controllers;
 
 use App\Models\Detalleventa;
 use App\Models\Notaventa;
-use App\Models\Producto;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
+use function PHPUnit\Framework\isEmpty;
 
 class NotaVentaController extends Controller
 {
     public function index()
     {
-        $notaventas = Notaventa::all();
-        $usuarios = Usuario::all(); 
-        
-        return view('notaventa.index', compact('notaventas', 'usuarios'));
+        $idUsuario = Auth::user()->id;
+        $notaventas = Notaventa::where('idUsuario', $idUsuario)->get();
+
+        return view('notaventa.index', compact('notaventas'));
     }
 
     public function create()
     {
-        $usuarios = Usuario::all(); 
+        $usuarios = Usuario::all();
 
         return view('notaventa.create', compact('usuarios'));
     }
 
     public function store(Request $request)
     {
-        $data = $request->validate([
-            //'Fecha' => 'required',
-            'Id' => 'required',
-            'Montototal' => 'required',
-            'UsuarioID' => 'required',
-        ]);
-
-        Notaventa::create($data);
-        //Detalleventa::create();
-        return redirect()->route('notaventa.index')->with('success', 'Nota de venta creada exitosamente.');
+        $cartItems  = json_decode($request->input('cartList'), true);
+        if (is_array($cartItems) && !empty($cartItems)) {
+            $idUsuario = Auth::user()->id;
+            $notaventa = new Notaventa();
+            //$fechaActual = new DateTime();            
+            $notaventa->Fecha = date('Y-m-d'); //$fechaActual->format('Y-m-d');
+            //dd($notaventa->Fecha);
+            $notaventa->Montototal = $request->input('total');
+            $notaventa->idUsuario = $idUsuario;
+            $notaventa->save();
+            foreach ($cartItems as $item) {
+                $detalleventa = new Detalleventa();
+                $detalleventa->Cantidad = $item['cantidad'];
+                $detalleventa->idProducto = $item['id'];
+                $detalleventa->idNotaventa = $notaventa->id;
+                $detalleventa->save();
+            }
+            return redirect()->route('notaventa.index')->with('success', 'Nota de venta creada exitosamente.');
+        }
+        //dd("No paso por el if");
     }
 
     public function show($id)
     {
-        $notaventa = Notaventa::findOrFail($id);
-        return view('notaventa.show', compact('notaventa'));
+        $notaventa = Notaventa::findOrFail($id); // Obtener la nota de venta por su ID
+
+        $productos = DB::table('producto')
+            ->join('detalleventa', 'producto.id', '=', 'detalleventa.idProducto')
+            ->where('detalleventa.idNotaventa', $notaventa->id)
+            ->select('producto.Nombre', 'producto.Precio','producto.Url', 'detalleventa.Cantidad')
+            ->get();
+        //dd($productos);
+        return view('notaventa.show', compact('notaventa','productos'));
     }
 
     public function edit($id)
     {
         $notaventa = Notaventa::findOrFail($id);
-        $usuarios = Usuario::all(); 
+        $usuarios = Usuario::all();
         return view('notaventa.edit', compact('notaventa', 'usuarios'));
     }
 
