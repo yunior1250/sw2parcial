@@ -37,29 +37,13 @@
 
 .product-price {
     font-size: 1.2rem;
-    color: #007bff; /* Color del precio */
+    color: #838383; /* Color del precio */
 }
 
 .product-stock {
     font-size: 1.2rem;
-    color: #28a745; /* Color del stock */
+    color: #838383; /* Color del stock */
 }
-
-/* Estilos para el botón "Ver Detalles" (si lo habilitas) */
-/*.btn {
-    background-color: #007bff;
-    color: #fff;
-    text-decoration: none;
-    padding: 5px 15px;
-    border-radius: 5px;
-    display: inline-block;
-    margin-top: 10px;
-    transition: background-color 0.3s;
-}
-
-.btn:hover {
-    background-color: #0056b3;
-}*/
 
 
 
@@ -82,6 +66,30 @@
     border-color: #007bff; /* Cambia el color al enfocar */
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Agrega un efecto de sombra */
 }
+
+.quantity-input {
+    width: 50px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.add-to-cart {
+    background-color: #FF5733; /* Cambia el color de fondo según tu preferencia */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.add-to-cart:hover {
+    background-color: #D44100; /* Cambia el color al pasar el mouse */
+}
+
+
 
 /* Estilo para las opciones del select */
 .custom-select option {
@@ -140,7 +148,7 @@
 }
 
 #checkoutButton {
-    background-color: #007bff;
+    background-color: #FF5733;
     color: #fff;
     text-decoration: none;
     padding: 10px 20px;
@@ -151,5 +159,5 @@
 }
 
 #checkoutButton:hover {
-    background-color: #0056b3;
+    background-color: #D44100;
 }

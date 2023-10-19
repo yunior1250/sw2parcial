@@ -355,7 +355,12 @@ return [
                     'route'     => 'inventarios.create',
                 ],
             ],
-        ],                
+        ],
+        [
+            'text'   => 'Notas Venta',
+            'icon'   => 'fas fa-fw fa-share',
+            'route' => 'notaventa.index',
+        ]                
     ],
 
     /*

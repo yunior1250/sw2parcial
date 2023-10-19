@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\Producto;
 use Illuminate\Http\Request;
+//use CloudinaryLabs\CloudinaryLaravel\MediaAlly;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use CloudinaryLabs\CloudinaryLaravel\MediaAlly;
 
 class ProductoController extends Controller
 {
@@ -29,6 +32,8 @@ class ProductoController extends Controller
 
     public function store(Request $request)
     {           
+        //dd($request->Url);
+
         $request->validate([
             'Nombre' => 'required',
             'Precio' => 'required',
@@ -37,7 +42,14 @@ class ProductoController extends Controller
             'idCategoria' => 'required',
         ]);
         
-
+        $uploadedFile = $request->file('Url');
+        /*$uploadedImage = Cloudinary::upload($uploadedFile->getRealPath());
+        $request->Url = $uploadedImage->secure_url;*/
+        $uploadedImage = MediaAlly::fromFile($uploadedFile);
+        $uploadedImage->upload();
+        $request->Url = $uploadedImage->secure_url;
+        //$request->Url = MediaAlly::fromFile($uploadedFile)->upload();
+        //dd($request->Url);
         Producto::create($request->all());
 
         return redirect()->route('productos.index')
