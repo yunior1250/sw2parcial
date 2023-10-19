@@ -33,10 +33,10 @@
                             <label for="Stock">Stock:</label>
                             <input type="text" name="Stock" id="Stock" class="form-control" value="{{ $producto->Stock }}">
                         </div>
-                        <div class="col-md-6">
+                        {{-- <div class="col-md-6">
                             <label for="Url">Url:</label>
                             <input type="text" name="Url" id="Url" class="form-control" value="{{ $producto->Url }}">
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 

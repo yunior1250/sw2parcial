@@ -66,7 +66,7 @@ class ProductoController extends Controller
             'Nombre' => 'required',
             'Precio' => 'required',
             'Stock' => 'required',
-            'Url' => 'required',
+            //'Url' => 'required',
             'idCategoria' => 'required',
         ]);
 

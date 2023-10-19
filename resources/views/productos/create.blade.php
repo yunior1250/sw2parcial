@@ -34,8 +34,8 @@
                             <input type="text" name="Stock" id="Stock" class="form-control">
                         </div>
                         <div class="col-md-6">
-                            <label for="Url">URL de la Imagen:</label>
-                            <input type="text" name="Url" id="Url" class="form-control">
+                            <label for="Url">Subir Imagen:</label>
+                            <input type="file" name="Url" id="Url" class="form-control">
                         </div>
                     </div>
                 </div>
