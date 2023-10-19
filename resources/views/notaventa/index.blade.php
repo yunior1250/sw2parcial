@@ -15,6 +15,7 @@
                 <th>ID</th>
                 <th>Fecha</th>
                 <th>Monto Total</th>
+                <th>Comprador</th>
                 <th>Acción</th>
             </tr>
         </thead>
@@ -24,6 +25,7 @@
                     <td>{{ $notaventa->id }}</td>
                     <td>{{ $notaventa->Fecha }}</td>
                     <td>{{ $notaventa->Montototal }}</td>
+                    <td>{{$notaventa->user->name}}</td>
                     <td>
                         <a href="{{ route('notaventa.show', $notaventa) }}" class="btn btn-primary">Mostrar</a>
                     </td>

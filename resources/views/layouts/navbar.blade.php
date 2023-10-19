@@ -4,7 +4,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap">
     <link rel="stylesheet" type="text/css" href="..\css\navbar.css">
-    
+
     @yield('css')
 </head>
 
@@ -16,11 +16,26 @@
                 alt="Logo de la empresa">
         </div>
         <ul class="nav-list">
+
             <li class="nav-item"><a href="/principal">Inicio</a></li>
-            <li class="nav-item"><a href="{{ route('productos.indexCliente') }}">Productos</a></li>
-            <li class="nav-item"><a href="{{ route('notaventa.index')}}">Compras</a></li>
-            <li class="nav-item"><a href="/dash">Dashboard</a></li>
-            <li class="nav-item"><a href="#">LogOut</a></li>            
+            @if (Auth::user()->rol === 'cliente')
+                <li class="nav-item"><a href="{{ route('productos.indexCliente') }}">Productos</a></li>
+                <li class="nav-item"><a href="{{ route('notaventa.index') }}">Compras</a></li>
+            @endif
+            @if (Auth::user()->rol === 'admin')
+                <li class="nav-item"><a href="/dash">Dashboard</a></li>
+            @endif
+            @auth
+                <li class="nav-item">
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        Logout
+                    </a>
+                </li>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            @endauth
         </ul>
     </nav>
     <div class="contenedor">

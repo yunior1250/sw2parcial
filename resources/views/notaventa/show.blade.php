@@ -9,6 +9,7 @@
         <h2>Información de la Nota de Venta</h2>
         <p>Fecha: {{ $notaventa->Fecha }}</p>
         <p>Monto Total: {{ $notaventa->Montototal }} Bs</p>
+        <p>Comprado: {{$notaventa->user->name}}</p>
 
         <h2>Productos Vendidos</h2>
         <table class="table">

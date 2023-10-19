@@ -16,11 +16,14 @@ class NotaVentaController extends Controller
 {
     public function index()
     {
-        $idUsuario = Auth::user()->id;
-        $notaventas = Notaventa::where('idUsuario', $idUsuario)->get();
-        return view('client.compras', compact('notaventas'));
-        //return view('notaventa.index', compact('notaventas'));
-
+        if (Auth::user()->rol === 'cliente') {
+            $idUsuario = Auth::user()->id;
+            $notaventas = Notaventa::where('idUsuario', $idUsuario)->get();
+            return view('client.compras', compact('notaventas'));
+        }else{
+            $notaventas = Notaventa::all();
+            return view('notaventa.index', compact('notaventas'));
+        }
     }
 
     public function create()
@@ -35,10 +38,8 @@ class NotaVentaController extends Controller
         $cartItems  = json_decode($request->input('cartList'), true);
         if (is_array($cartItems) && !empty($cartItems)) {
             $idUsuario = Auth::user()->id;
-            $notaventa = new Notaventa();
-            //$fechaActual = new DateTime();            
-            $notaventa->Fecha = date('Y-m-d'); //$fechaActual->format('Y-m-d');
-            //dd($notaventa->Fecha);
+            $notaventa = new Notaventa();                     
+            $notaventa->Fecha = date('Y-m-d'); 
             $notaventa->Montototal = $request->input('total');
             $notaventa->idUsuario = $idUsuario;
             $notaventa->save();
@@ -69,9 +70,12 @@ class NotaVentaController extends Controller
             ->where('detalleventa.idNotaventa', $notaventa->id)
             ->select('producto.Nombre', 'producto.Precio', 'producto.Url', 'detalleventa.Cantidad')
             ->get();
-        //dd($productos);
-        //return view('notaventa.show', compact('notaventa','productos'));
-        return view('client.detalleCompra', compact('notaventa', 'productos'));
+        
+        if (Auth::user()->rol === 'cliente') {
+            return view('client.detalleCompra', compact('notaventa', 'productos'));    
+        }else{
+            return view('notaventa.show', compact('notaventa','productos'));
+        }            
     }
 
     public function edit($id)

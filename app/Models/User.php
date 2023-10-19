@@ -27,6 +27,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'rol'
     ];
 
     /**
@@ -64,7 +65,7 @@ class User extends Authenticatable
         parent::boot();
 
         static::creating(function ($user) {
-            $user->rol = 'Cliente';
+            $user->rol = 'cliente';
         });
     }
 }

@@ -17,5 +17,10 @@ class Notaventa extends Model
         'Montototal',
         'idUsuario',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'idUsuario');
+    }
     
 }

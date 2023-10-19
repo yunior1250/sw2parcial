@@ -315,6 +315,11 @@ return [
         ],
         ['header' => 'Gestionar'],
         [
+            'text' => 'Usuarios',
+            'icon'    => 'fas fa-fw fa-share',
+            'route'     => 'usuarios.index',
+        ],
+        [
             'text'    => 'Productos',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
@@ -360,7 +365,7 @@ return [
             'text'   => 'Notas Venta',
             'icon'   => 'fas fa-fw fa-share',
             'route' => 'notaventa.index',
-        ]                
+        ]                        
     ],
 
     /*

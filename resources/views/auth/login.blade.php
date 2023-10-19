@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">
-            <img src="ruta/a/tu/logo.png" alt="Botella Logo"> <!-- Reemplaza 'ruta/a/tu/logo.png' con la ubicación de tu logotipo de botella -->
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKfpXYMNfEkbxUOE4ztmAmOjiNfyXZdmQYReNQW6KAaBYreoLT4LEnvO587iied20xSCs&usqp=CAU" alt="Botella Logo"> <!-- Reemplaza 'ruta/a/tu/logo.png' con la ubicación de tu logotipo de botella -->
         </x-slot>
 
         <x-validation-errors class="mb-4" />
@@ -34,8 +34,8 @@
 
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                        {{ __('¿Olvidaste tu contraseña?') }}
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="/register">{{-- "{{ route('password.request') }}"> --}}
+                        No tienes cuenta? Registrate{{-- {{ __('¿Olvidaste tu contraseña?') }} --}}
                     </a>
                 @endif
 
