@@ -69,7 +69,7 @@ class ProductoController extends Controller
 
     public function destroy($id)
     {
-        Producto::where('ProductoID', $id)->delete();
+        Producto::where('id', $id)->delete();
         return redirect()->route('productos.index')
             ->with('success', 'Producto eliminado exitosamente.');
     }

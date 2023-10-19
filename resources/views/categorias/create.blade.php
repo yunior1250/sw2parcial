@@ -1,27 +1,30 @@
 @extends('adminlte::page')
 
-@section('title', 'Listado De Categorias ')
+@section('title', 'Crear Categoría')
 
 @section('content_header')
-    <h1>Listado De Categorias</h1>
+    <h1>Crear Categoría</h1>
 @stop
 
 @section('content')
-    <h1>Crear Categoría</h1>
+    <div class="card">
+        <div class="card-body">
+            
+            <form method="POST" action="{{ route('categorias.store') }}">
+                @csrf
 
-    <form method="POST" action="{{ route('categorias.store') }}">
-        @csrf
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" name="Nombre" id="nombre" class="form-control" value="{{ old('Nombre') }}">
+                    @error('Nombre')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
 
-        <div class="form-group">
-            <label for="nombre">Nombre:</label>
-            <input type="text" name="Nombre" id="nombre" class="form-control" value="{{ old('Nombre') }}">
-            @error('Nombre')
-                <div class="text-danger">{{ $message }}</div>
-            @enderror
+                <button type="submit" class="btn btn-primary">Crear Categoría</button>
+            </form>
         </div>
-
-        <button type="submit" class="btn btn-primary">Crear Categoría</button>
-    </form>
+    </div>
 @stop
 
 @section('css')

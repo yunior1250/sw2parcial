@@ -8,23 +8,6 @@
         @endforeach
     </select>
     
-
-    {{-- <ul class="product-list" id="productList">
-        @foreach ($productos as $producto)
-            <li class="product" data-categoria="{{ $producto->idCategoria }}" >
-                <div class="product-image">
-                    <img src="{{ $producto->Url }}" alt="{{ $producto->Nombre }}">
-                </div>
-                <h2 class="product-title">{{ $producto->Nombre }}</h2>
-                <div class="product-info">
-                    <p class="product-price">{{ $producto->Precio }} Bs</p>
-                    <p class="product-stock">Stock: {{ $producto->Stock }}</p>
-                </div>  
-                <button class="add-to-cart" data-producto="{{ $producto }}">Agregar al Carrito</button>          
-            </li>
-        @endforeach
-    </ul> --}}
-
     <ul class="product-list" id="productList">
         @foreach ($productos as $producto)
             <li class="product" data-categoria="{{ $producto->idCategoria }}">
