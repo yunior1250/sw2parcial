@@ -27,6 +27,10 @@ DROP TABLE IF EXISTS `Producto` CASCADE
 DROP TABLE IF EXISTS `Usuario` CASCADE
 ;
 
+ALTER TABLE `users` 
+ ADD rol TEXT NULL
+;
+
 /* Create Tables */
 
 CREATE TABLE `Categoria`
@@ -50,8 +54,8 @@ CREATE TABLE `Inventario`
     `id` INT NOT NULL AUTO_INCREMENT, -- Cambiado a autoincrementable
     `Accion` VARCHAR(50) NULL,
     `Cantidad` INT NULL,
-    `id` INT NOT NULL,
-    `id` INT NOT NULL,
+    `idUsuario` BIGINT UNSIGNED NOT NULL,
+    `idProducto` INT NOT NULL,
     PRIMARY KEY (`id`) -- Definido como clave primaria
 );
 
@@ -70,11 +74,12 @@ CREATE TABLE `Producto`
     `Nombre` VARCHAR(50) NULL,
     `Precio` DOUBLE(10,2) NULL,
     `Stock` INT NULL,
-    `CategoriaID` INT NULL,
+    `Url` TEXT NULL,		
+    `idCategoria` INT NULL,
     PRIMARY KEY (`id`) -- Definido como clave primaria
 );
 
-/*CREATE TABLE `idUsuario`
+/*CREATE TABLE `Usuario`
 (
     `id` INT NOT NULL AUTO_INCREMENT, -- Cambiado a autoincrementable
     `Correo` VARCHAR(50) NULL,

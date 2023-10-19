@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\Producto;
 use Illuminate\Http\Request;
-//use CloudinaryLabs\CloudinaryLaravel\MediaAlly;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
-use CloudinaryLabs\CloudinaryLaravel\MediaAlly;
+use Illuminate\Support\Facades\Storage;
 
 class ProductoController extends Controller
 {
@@ -15,7 +13,7 @@ class ProductoController extends Controller
     {
         $categorias = Categoria::all();
         $productos = Producto::where('Stock', '>', 0)->get();
-        return view('client.producto', compact('productos','categorias'));
+        return view('client.producto', compact('productos', 'categorias'));
     }
 
     public function index()
@@ -31,27 +29,26 @@ class ProductoController extends Controller
     }
 
     public function store(Request $request)
-    {           
+    {
         //dd($request->Url);
 
         $request->validate([
             'Nombre' => 'required',
-            'Precio' => 'required',
-            'Stock' => 'required',
+            'Precio' => 'required',            
             'Url' => 'required',
+            'Stock' => 'required',
             'idCategoria' => 'required',
         ]);
-        
-        $uploadedFile = $request->file('Url');
-        /*$uploadedImage = Cloudinary::upload($uploadedFile->getRealPath());
-        $request->Url = $uploadedImage->secure_url;*/
-        $uploadedImage = MediaAlly::fromFile($uploadedFile);
-        $uploadedImage->upload();
-        $request->Url = $uploadedImage->secure_url;
-        //$request->Url = MediaAlly::fromFile($uploadedFile)->upload();
-        //dd($request->Url);
-        Producto::create($request->all());
 
+        $path = $request->file('Url')->store("productos", 's3');
+        $url = Storage::disk('s3')->url($path);
+        $producto = new Producto();
+        $producto->Nombre=$request->Nombre;
+        $producto->Precio=$request->Precio;
+        $producto->idCategoria=$request->idCategoria;
+        $producto->Url=$url;
+        $producto->Stock=$request->Stock;
+        $producto->save();
         return redirect()->route('productos.index')
             ->with('success', 'Producto creado exitosamente.');
     }
@@ -81,7 +78,7 @@ class ProductoController extends Controller
 
     public function destroy($id)
     {
-        Producto::where('ProductoID', $id)->delete();
+        Producto::where('id', $id)->delete();
         return redirect()->route('productos.index')
             ->with('success', 'Producto eliminado exitosamente.');
     }

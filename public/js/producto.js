@@ -77,7 +77,13 @@ document.addEventListener("DOMContentLoaded", function () {
             if (quantity > 0 && quantity <= productStock) {
                 const existingItem = cartItems.find(item => item.id === productId);
                 if (existingItem) {
-                    existingItem.cantidad += quantity;
+
+                    if (existingItem.cantidad + quantity <= productStock) {
+                        existingItem.cantidad += quantity;
+                    } else {
+                        // Muestra un mensaje o toma otra acción, ya que excedería el stock disponible
+                        alert("No puedes agregar más de la cantidad disponible en stock");
+                    }
                 } else {
                     cartItems.push({
                         id: productId,
@@ -92,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-
+    
     buttonSubmit.addEventListener("click", function () {
         // Antes de enviar el formulario
         document.getElementById("cartListField").value = JSON.stringify(cartItems);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Detalleventa;
 use App\Models\Notaventa;
+use App\Models\Producto;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,8 +18,9 @@ class NotaVentaController extends Controller
     {
         $idUsuario = Auth::user()->id;
         $notaventas = Notaventa::where('idUsuario', $idUsuario)->get();
+        return view('client.compras', compact('notaventas'));
+        //return view('notaventa.index', compact('notaventas'));
 
-        return view('notaventa.index', compact('notaventas'));
     }
 
     public function create()
@@ -46,8 +48,14 @@ class NotaVentaController extends Controller
                 $detalleventa->idProducto = $item['id'];
                 $detalleventa->idNotaventa = $notaventa->id;
                 $detalleventa->save();
+                $producto = Producto::find($item['id']); // Obtener el producto por su ID
+                if ($producto) {
+                    $producto->Stock = $producto->Stock - $item['cantidad'];
+                    $producto->save(); // Actualizar el stock del producto
+                }
             }
-            return redirect()->route('notaventa.index')->with('success', 'Nota de venta creada exitosamente.');
+            return redirect()->route('notaventa.show', $notaventa)->with('success', 'Nota de venta creada exitosamente.');
+            //return redirect()->route('notaventa.index')->with('success', 'Nota de venta creada exitosamente.');
         }
         //dd("No paso por el if");
     }
@@ -59,10 +67,11 @@ class NotaVentaController extends Controller
         $productos = DB::table('producto')
             ->join('detalleventa', 'producto.id', '=', 'detalleventa.idProducto')
             ->where('detalleventa.idNotaventa', $notaventa->id)
-            ->select('producto.Nombre', 'producto.Precio','producto.Url', 'detalleventa.Cantidad')
+            ->select('producto.Nombre', 'producto.Precio', 'producto.Url', 'detalleventa.Cantidad')
             ->get();
         //dd($productos);
-        return view('notaventa.show', compact('notaventa','productos'));
+        //return view('notaventa.show', compact('notaventa','productos'));
+        return view('client.detalleCompra', compact('notaventa', 'productos'));
     }
 
     public function edit($id)

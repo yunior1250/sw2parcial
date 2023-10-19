@@ -16,8 +16,9 @@
         <ul class="nav-list">
             <li class="nav-item"><a href="/principal">Inicio</a></li>
             <li class="nav-item"><a href="{{ route('productos.indexCliente') }}">Productos</a></li>
-            <li class="nav-item"><a href="#">Servicios</a></li>
-            <li class="nav-item"><a href="#">Contacto</a></li>
+            <li class="nav-item"><a href="{{ route('notaventa.index')}}">Compras</a></li>
+            <li class="nav-item"><a href="/dash">Dashboard</a></li>
+            <li class="nav-item"><a href="#">LogOut</a></li>            
         </ul>
     </nav>
     <div class="contenedor">
