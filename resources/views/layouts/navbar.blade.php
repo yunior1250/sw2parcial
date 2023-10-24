@@ -19,7 +19,7 @@
 
             <li class="nav-item"><a href="/principal">Inicio</a></li>
             @if (Auth::user()->rol === 'cliente')
-                <li class="nav-item"><a href="{{ route('productos.indexCliente') }}">Productos</a></li>
+                <li class="nav-item"><a href="{{ route('productos.index') }}">Productos</a></li>
                 <li class="nav-item"><a href="{{ route('notaventa.index') }}">Compras</a></li>
             @endif
             @if (Auth::user()->rol === 'admin')

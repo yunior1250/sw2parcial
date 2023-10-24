@@ -5,21 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Categoria;
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ProductoController extends Controller
-{
-    public function indexCliente()
-    {
-        $categorias = Categoria::all();
-        $productos = Producto::where('Stock', '>', 0)->get();
-        return view('client.producto', compact('productos', 'categorias'));
-    }
+{    
 
     public function index()
     {
-        $productos = Producto::all();
-        return view('productos.index', compact('productos'));
+        if (Auth::user()->rol === 'cliente') {
+            $categorias = Categoria::all();
+            $productos = Producto::where('Stock', '>', 0)->get();
+            return view('client.producto', compact('productos', 'categorias'));
+        } else {
+            $productos = Producto::all();
+            return view('productos.index', compact('productos'));
+        }
     }
 
     public function create()
@@ -34,7 +35,7 @@ class ProductoController extends Controller
 
         $request->validate([
             'Nombre' => 'required',
-            'Precio' => 'required',            
+            'Precio' => 'required',
             'Url' => 'required',
             'Stock' => 'required',
             'idCategoria' => 'required',
@@ -43,11 +44,11 @@ class ProductoController extends Controller
         $path = $request->file('Url')->store("productos", 's3');
         $url = Storage::disk('s3')->url($path);
         $producto = new Producto();
-        $producto->Nombre=$request->Nombre;
-        $producto->Precio=$request->Precio;
-        $producto->idCategoria=$request->idCategoria;
-        $producto->Url=$url;
-        $producto->Stock=$request->Stock;
+        $producto->Nombre = $request->Nombre;
+        $producto->Precio = $request->Precio;
+        $producto->idCategoria = $request->idCategoria;
+        $producto->Url = $url;
+        $producto->Stock = $request->Stock;
         $producto->save();
         return redirect()->route('productos.index')
             ->with('success', 'Producto creado exitosamente.');

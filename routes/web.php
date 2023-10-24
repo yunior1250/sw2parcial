@@ -37,9 +37,8 @@ Route::middleware([
     });
 });*/
 Route::view('/principal', 'client.principal');
-Route::get('/productoCliente', [ProductoController::class, 'indexCliente'])->name('productos.indexCliente');
-Route::get('/compras', [NotaVentaController::class, 'index'])->name('notaventa.show');
-
+//Route::get('/productoCliente', [ProductoController::class, 'indexCliente'])->name('productos.indexCliente');
+//Route::get('/compras', [NotaVentaController::class, 'index'])->name('notaventa.show');
 /*Route::post('/notaventa', [NotaVentaController::class, 'store'])->name('notaventa.store');
 Route::get('/notaventa', [NotaVentaController::class, 'index'])->name('notaventa.index');
 Route::get('/notaventa', [NotaVentaController::class, 'show'])->name('notaventa.show');*/
