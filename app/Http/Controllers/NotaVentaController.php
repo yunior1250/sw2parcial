@@ -66,9 +66,9 @@ class NotaVentaController extends Controller
         $notaventa = Notaventa::findOrFail($id); // Obtener la nota de venta por su ID
 
         $productos = DB::table('Producto')
-            ->join('detalleventa', 'producto.id', '=', 'detalleventa.idProducto')
-            ->where('detalleventa.idNotaventa', $notaventa->id)
-            ->select('producto.Nombre', 'producto.Precio', 'producto.Url', 'detalleventa.Cantidad')
+            ->join('Detalleventa', 'Producto.id', '=', 'Detalleventa.idProducto')
+            ->where('Detalleventa.idNotaventa', $notaventa->id)
+            ->select('Producto.Nombre', 'Producto.Precio', 'Producto.Url', 'Detalleventa.Cantidad')
             ->get();
         
         if (Auth::user()->rol === 'cliente') {
