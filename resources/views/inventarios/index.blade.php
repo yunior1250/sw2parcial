@@ -25,9 +25,9 @@
                     @foreach ($inventarios as $inventario)
                         <tr>
                             <td>{{ $inventario->id }}</td>
-                            <td>{{ $inventario->Accion }}</td>
-                            <td>{{ $inventario->Cantidad }}</td>
-                            <td>{{ $inventario->producto->Nombre }}</td>
+                            <td>{{ $inventario->accion }}</td>
+                            <td>{{ $inventario->cantidad }}</td>
+                            <td>{{ $inventario->producto->nombre }}</td>
                             <td>{{ $inventario->usuario->name }}</td>
                             <td>
                                 {{-- <a href="{{ route('inventarios.edit', $inventario->id) }}" class="btn btn-sm btn-primary">Editar</a> --}}

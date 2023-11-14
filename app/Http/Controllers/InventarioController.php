@@ -25,34 +25,34 @@ class InventarioController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'Accion' => 'required',
-            'Cantidad' => 'required',
+            'accion' => 'required',
+            'cantidad' => 'required',
             'idProducto' => 'required',
         ]);
 
         // Obtiene el ID del usuario autenticado
         $idUsuario = Auth::user()->id;
 
-        if ($request->Accion === 'Agregar') {
+        if ($request->accion === 'Agregar') {
             $producto = Producto::find($request->idProducto);
-            $producto->Stock += $request->Cantidad;
+            $producto->stock += $request->cantidad;
             $producto->save();
         } else {
             $producto = Producto::find($request->idProducto);
-            if ($request->Cantidad > $producto->Stock) {
-                $request->Cantidad = $producto->Stock;
-                $producto->Stock = 0;
+            if ($request->cantidad > $producto->stock) {
+                $request->cantidad = $producto->stock;
+                $producto->stock = 0;
                 $producto->save();
             } else {
-                $producto->Stock -= $request->Cantidad;
+                $producto->stock -= $request->cantidad;
                 $producto->save();
             }
         }
         
         // Crea un nuevo inventario con el usuario autenticado
         Inventario::create([
-            'Accion' => $request->Accion,
-            'Cantidad' => $request->Cantidad,
+            'accion' => $request->accion,
+            'cantidad' => $request->cantidad,
             'idProducto' => $request->idProducto,
             'idUsuario' => $idUsuario,
         ]);
@@ -65,7 +65,7 @@ class InventarioController extends Controller
     {
         $inventario = Inventario::find($id);
         $producto = Producto::find($inventario->idProducto);
-        $producto->Stock -= $inventario->Cantidad;
+        $producto->stock -= $inventario->cantidad;
         $producto->save();
         Inventario::where('id', $id)->delete();
         return redirect()->route('inventarios.index')

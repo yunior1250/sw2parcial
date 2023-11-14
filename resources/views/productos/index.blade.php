@@ -17,10 +17,10 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Precio</th>
-                        <th>Stock</th>
-                        <th>Url</th>
+                        <th>nombre</th>
+                        <th>precio</th>
+                        <th>stock</th>
+                        <th>url</th>
                         <th>Categoría</th>
                         <th>Acciones</th>
                     </tr>
@@ -29,11 +29,11 @@
                     @foreach ($productos as $producto)
                         <tr>
                             <td>{{ $producto->id }}</td>
-                            <td>{{ $producto->Nombre }}</td>
-                            <td>{{ $producto->Precio }}</td>
-                            <td>{{ $producto->Stock }}</td>
-                            <td><img src="{{ $producto->Url }}" alt="" width="200" height="100"></td>
-                            <td>{{ $producto->categoria->Nombre }}</td>
+                            <td>{{ $producto->nombre }}</td>
+                            <td>{{ $producto->precio }}</td>
+                            <td>{{ $producto->stock }}</td>
+                            <td><img src="{{ $producto->url }}" alt="" width="200" height="100"></td>
+                            <td>{{ $producto->categoria->nombre }}</td>
                             <td>
                                 <a href="{{ route('productos.edit', $producto->id) }}" class="btn btn-primary">Editar</a>
                                 <form method="POST" action="{{ route('productos.destroy', $producto->id) }}"
@@ -55,13 +55,13 @@
         @foreach ($productos as $producto)
             <li class="product" data-categoria="{{ $producto->idCategoria }}">
                 <div class="product-image">
-                    <img src="{{ $producto->Url }}" alt="{{ $producto->Nombre }}">
+                    <img src="{{ $producto->url }}" alt="{{ $producto->nombre }}">
                 </div>
-                <h2 class="product-title">{{ $producto->Nombre }}</h2>
+                <h2 class="product-title">{{ $producto->nombre }}</h2>
                 <div class="product-info">
-                    <p class="product-price">{{ $producto->Precio }} Bs</p>
-                    <p class="product-stock">Stock: {{ $producto->Stock }}</p>
-                    {{-- <input type="number" class="quantity-input" min="1" max="{{ $producto->Stock }}">
+                    <p class="product-price">{{ $producto->precio }} Bs</p>
+                    <p class="product-stock">stock: {{ $producto->stock }}</p>
+                    {{-- <input type="number" class="quantity-input" min="1" max="{{ $producto->stock }}">
                     <button class="add-to-cart" data-producto="{{ $producto }}">Agregar al Carrito</button> --}}
                     <a href="{{ route('productos.edit', $producto->id) }}" class="btn btn-primary">Editar</a>
                     <form method="POST" action="{{ route('productos.destroy', $producto->id) }}" style="display: inline;">

@@ -14,9 +14,9 @@
                 @csrf
 
                 <div class="form-group">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" name="Nombre" id="nombre" class="form-control" value="{{ old('Nombre') }}">
-                    @error('Nombre')
+                    <label for="nombre">nombre:</label>
+                    <input type="text" name="nombre" id="nombre" class="form-control" value="{{ old('nombre') }}">
+                    @error('nombre')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>

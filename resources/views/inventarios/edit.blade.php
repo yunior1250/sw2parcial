@@ -14,23 +14,23 @@
     @method('PUT')
 
     <div class="form-group">
-        <label for="Nombre">Nombre:</label>
-        <input type="text" name="Nombre" id="Nombre" class="form-control" value="{{ $producto->Nombre }}">
+        <label for="nombre">nombre:</label>
+        <input type="text" name="nombre" id="nombre" class="form-control" value="{{ $producto->nombre }}">
     </div>
 
     <div class="form-group">
-        <label for="Precio">Precio:</label>
-        <input type="text" name="Precio" id="Precio" class="form-control" value="{{ $producto->Precio }}">
+        <label for="precio">precio:</label>
+        <input type="text" name="precio" id="precio" class="form-control" value="{{ $producto->precio }}">
     </div>
 
     <div class="form-group">
-        <label for="Stock">Stock:</label>
-        <input type="text" name="Stock" id="Stock" class="form-control" value="{{ $producto->Stock }}">
+        <label for="stock">stock:</label>
+        <input type="text" name="stock" id="stock" class="form-control" value="{{ $producto->stock }}">
     </div>
 
     <div class="form-group">
-        <label for="Url">Url:</label>
-        <input type="text" name="Url" id="Url" class="form-control" value="{{ $producto->Url }}">
+        <label for="url">url:</label>
+        <input type="text" name="url" id="url" class="form-control" value="{{ $producto->url }}">
     </div>
 
     <div class="form-group">
@@ -38,13 +38,11 @@
         <select name="idCategoria" id="idCategoria" class="form-control">
             @foreach ($categorias as $categoria)
                 <option value="{{ $categoria->id }}" {{ $categoria->id == $producto->idCategoria ? 'selected' : '' }}>
-                    {{ $categoria->Nombre }}
+                    {{ $categoria->nombre }}
                 </option>
             @endforeach
         </select>
-    </div>
-    
-
+    </div>    
     <button type="submit" class="btn btn-primary">Actualizar Producto</button>
 </form>
 @stop

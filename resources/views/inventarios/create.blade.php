@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="Accion">Acción:</label>
-                            <select name="Accion" id="Accion" class="form-control">
+                            <select name="accion" id="accion" class="form-control">
                                 <option value="Agregar">Agregar</option>
                                 <option value="Quitar">Quitar</option>
                             </select>
@@ -24,7 +24,7 @@
 
                         <div class="col-md-6">
                             <label for="Cantidad">Cantidad:</label>
-                            <input type="number" name="Cantidad" id="Cantidad" class="form-control">
+                            <input type="number" name="cantidad" id="cantidad" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                     <label for="idProducto">Producto:</label>
                     <select name="idProducto" id="idProducto" class="form-control">
                         @foreach ($productos as $producto)
-                            <option value="{{ $producto->id }}">{{ $producto->Nombre }}</option>
+                            <option value="{{ $producto->id }}">{{ $producto->nombre }}</option>
                         @endforeach
                     </select>
                 </div>

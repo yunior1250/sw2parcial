@@ -1,4 +1,4 @@
-INSERT INTO railway.Categoria (Nombre) VALUES
+INSERT INTO categoria (nombre) VALUES
 	 ('Ron'),
 	 ('Singani'),
 	 ('Vino'),

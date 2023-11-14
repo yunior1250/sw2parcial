@@ -33,48 +33,48 @@ ALTER TABLE `users`
 
 /* Create Tables */
 
-CREATE TABLE `Categoria`
+CREATE TABLE `categoria`
 (
     `id` INT NOT NULL AUTO_INCREMENT, -- Cambiado a autoincrementable
-    `Nombre` VARCHAR(50) NULL,
+    `nombre` VARCHAR(50) NULL,
     PRIMARY KEY (`id`) -- Definido como clave primaria
 );
 
-CREATE TABLE `Detalleventa`
+CREATE TABLE `detalleventa`
 (
     `id` INT NOT NULL AUTO_INCREMENT, -- Cambiado a autoincrementable
-    `Cantidad` INT NULL,
+    `cantidad` INT NULL,
     `idNotaventa` INT NULL,
     `idProducto` INT NULL,
     PRIMARY KEY (`id`) -- Definido como clave primaria
 );
 
-CREATE TABLE `Inventario`
+CREATE TABLE `inventario`
 (
     `id` INT NOT NULL AUTO_INCREMENT, -- Cambiado a autoincrementable
-    `Accion` VARCHAR(50) NULL,
-    `Cantidad` INT NULL,
+    `accion` VARCHAR(50) NULL,
+    `cantidad` INT NULL,
     `idUsuario` BIGINT UNSIGNED NOT NULL,
     `idProducto` INT NOT NULL,
     PRIMARY KEY (`id`) -- Definido como clave primaria
 );
 
-CREATE TABLE `Notaventa`
+CREATE TABLE `notaventa`
 (
     `id` INT NOT NULL AUTO_INCREMENT, -- Cambiado a autoincrementable
-    `Fecha` DATE NULL,
-    `Montototal` DOUBLE(10,2) NULL,
+    `fecha` DATE NULL,
+    `montototal` DOUBLE(10,2) NULL,
     `idUsuario` BIGINT UNSIGNED NOT NULL,
     PRIMARY KEY (`id`) -- Definido como clave primaria
 );
 
-CREATE TABLE `Producto`
+CREATE TABLE `producto`
 (
     `id` INT NOT NULL AUTO_INCREMENT, -- Cambiado a autoincrementable
-    `Nombre` VARCHAR(50) NULL,
-    `Precio` DOUBLE(10,2) NULL,
-    `Stock` INT NULL,
-    `Url` TEXT NULL,		
+    `nombre` VARCHAR(50) NULL,
+    `precio` DOUBLE(10,2) NULL,
+    `stock` INT NULL,
+    `url` TEXT NULL,		
     `idCategoria` INT NULL,
     PRIMARY KEY (`id`) -- Definido como clave primaria
 );
@@ -91,34 +91,34 @@ CREATE TABLE `Producto`
 
 /* Create Foreign Key Constraints */
 
-ALTER TABLE `Detalleventa` 
+ALTER TABLE `detalleventa` 
  ADD CONSTRAINT `FK_DetalleVenta_Producto`
-	FOREIGN KEY (`idProducto`) REFERENCES `Producto` (`id`) ON DELETE No Action ON UPDATE No Action
+	FOREIGN KEY (`idProducto`) REFERENCES `producto` (`id`) ON DELETE No Action ON UPDATE No Action
 ;
 
-ALTER TABLE `Detalleventa` 
+ALTER TABLE `detalleventa` 
  ADD CONSTRAINT `FK_DetalleVenta_NotaVenta`
-	FOREIGN KEY (`idNotaventa`) REFERENCES `Notaventa` (`id`) ON DELETE No Action ON UPDATE No Action
+	FOREIGN KEY (`idNotaventa`) REFERENCES `notaventa` (`id`) ON DELETE No Action ON UPDATE No Action
 ;
 
-ALTER TABLE `Inventario` 
+ALTER TABLE `inventario` 
  ADD CONSTRAINT `FK_Inventario_Producto`
-	FOREIGN KEY (`idProducto`) REFERENCES `Producto` (`id`) ON DELETE No Action ON UPDATE No Action
+	FOREIGN KEY (`idProducto`) REFERENCES `producto` (`id`) ON DELETE No Action ON UPDATE No Action
 ;
 
-ALTER TABLE `Inventario` 
+ALTER TABLE `inventario` 
  ADD CONSTRAINT `FK_Inventario_users`
 	FOREIGN KEY (`idUsuario`) REFERENCES `users` (`id`) ON DELETE No Action ON UPDATE No Action
 ;
 
-ALTER TABLE `Notaventa` 
+ALTER TABLE `notaventa` 
  ADD CONSTRAINT `FK_Notaventa_users`
 	FOREIGN KEY (`idUsuario`) REFERENCES `users` (`id`) ON DELETE No Action ON UPDATE No Action
 ;
 
-ALTER TABLE `Producto` 
+ALTER TABLE `producto` 
  ADD CONSTRAINT `FK_Producto_Categoria`
-	FOREIGN KEY (`idCategoria`) REFERENCES `Categoria` (`id`) ON DELETE No Action ON UPDATE No Action
+	FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`id`) ON DELETE No Action ON UPDATE No Action
 ;
 
 SET FOREIGN_KEY_CHECKS=1 

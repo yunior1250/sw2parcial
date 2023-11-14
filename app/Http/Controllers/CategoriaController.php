@@ -21,7 +21,7 @@ class CategoriaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'Nombre' => 'required',
+            'nombre' => 'required',
             //'CategoriaID' => 'required',
         ]);
 
@@ -46,7 +46,7 @@ class CategoriaController extends Controller
     public function update(Request $request, $id)
     {                
         $request->validate([
-            'Nombre' => 'required',            
+            'nombre' => 'required',            
         ]);
 
         Categoria::find($id)->update($request->all());

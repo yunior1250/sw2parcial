@@ -15,8 +15,8 @@
                 @method('PUT')
 
                 <div class="form-group">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" name="Nombre" id="Nombre" class="form-control" value="{{ $categoria->Nombre }}">
+                    <label for="nombre">nombre:</label>
+                    <input type="text" name="nombre" id="nombre" class="form-control" value="{{ $categoria->nombre }}">
                 </div>
 
                 <button type="submit" class="btn btn-primary">Actualizar Categoría</button>

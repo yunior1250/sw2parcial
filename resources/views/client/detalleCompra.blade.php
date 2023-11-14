@@ -9,8 +9,8 @@
                     <div class="card-body">
                         <div class="info-section">
                             <h2>Información de la Nota de Compra</h2>
-                            <p><strong>Fecha:</strong> {{ $notaventa->Fecha }}</p>
-                            <p><strong>Monto Total:</strong> {{ $notaventa->Montototal }} Bs</p>
+                            <p><strong>Fecha:</strong> {{ $notaventa->fecha }}</p>
+                            <p><strong>Monto Total:</strong> {{ $notaventa->montototal }} Bs</p>
                         </div>
 
                         <div class="products-section">
@@ -19,12 +19,12 @@
                                 @foreach ($productos as $producto)
                                     <li class="product-item">
                                         <div class="product-info">
-                                            <h3>{{ $producto->Nombre }}</h3>
-                                            <p><strong>Precio:</strong> {{ $producto->Precio }} Bs</p>
-                                            <p><strong>Cantidad:</strong> {{ $producto->Cantidad }}</p>
+                                            <h3>{{ $producto->nombre }}</h3>
+                                            <p><strong>Precio:</strong> {{ $producto->precio }} Bs</p>
+                                            <p><strong>Cantidad:</strong> {{ $producto->cantidad }}</p>
                                         </div>
                                         <div class="product-image">
-                                            <img src="{{ $producto->Url }}" alt="{{ $producto->Nombre }}"
+                                            <img src="{{ $producto->url }}" alt="{{ $producto->nombre }}"
                                                 style="max-width: 200px; max-height: 200px;">
                                         </div>
                                     </li>

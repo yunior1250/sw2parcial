@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Detalleventa extends Model
 {
     use HasFactory;
-    protected $table = 'Detalleventa';    
+    protected $table = 'detalleventa';    
     public $timestamps = false;
 
     protected $fillable = [
-        'Cantidad',
+        'cantidad',
         'idProducto',
         'idNotaVenta',
     ];

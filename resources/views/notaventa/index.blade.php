@@ -23,8 +23,8 @@
             @foreach ($notaventas as $notaventa)
                 <tr>
                     <td>{{ $notaventa->id }}</td>
-                    <td>{{ $notaventa->Fecha }}</td>
-                    <td>{{ $notaventa->Montototal }}</td>
+                    <td>{{ $notaventa->fecha }}</td>
+                    <td>{{ $notaventa->montototal }}</td>
                     <td>{{$notaventa->user->name}}</td>
                     <td>
                         <a href="{{ route('notaventa.show', $notaventa) }}" class="btn btn-primary">Mostrar</a>

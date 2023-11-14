@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Notaventa extends Model
 {
     use HasFactory;
-    protected $table = 'Notaventa';
+    protected $table = 'notaventa';
     //protected $primaryKey = 'NotaventaID';
     public $timestamps = false;
 
     protected $fillable = [
-        'Fecha',        
-        'Montototal',
+        'fecha',        
+        'montototal',
         'idUsuario',
     ];
 

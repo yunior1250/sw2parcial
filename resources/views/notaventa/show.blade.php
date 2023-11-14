@@ -7,8 +7,8 @@
         <h1>Detalle de Nota de Venta</h1>
 
         <h2>Información de la Nota de Venta</h2>
-        <p>Fecha: {{ $notaventa->Fecha }}</p>
-        <p>Monto Total: {{ $notaventa->Montototal }} Bs</p>
+        <p>Fecha: {{ $notaventa->fecha }}</p>
+        <p>Monto Total: {{ $notaventa->montototal }} Bs</p>
         <p>Comprado: {{$notaventa->user->name}}</p>
 
         <h2>Productos Vendidos</h2>
@@ -23,9 +23,9 @@
             <tbody>
                 @foreach ($productos as $producto)
                     <tr>
-                        <td>{{ $producto->Nombre }}</td>
-                        <td>{{ $producto->Precio }}</td>
-                        <td>{{ $producto->Cantidad }}</td>
+                        <td>{{ $producto->nombre }}</td>
+                        <td>{{ $producto->precio }}</td>
+                        <td>{{ $producto->cantidad }}</td>
                     </tr>
                 @endforeach
             </tbody>

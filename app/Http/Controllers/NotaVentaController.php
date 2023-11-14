@@ -39,13 +39,13 @@ class NotaVentaController extends Controller
         if (is_array($cartItems) && !empty($cartItems)) {
             $idUsuario = Auth::user()->id;
             $notaventa = new Notaventa();                     
-            $notaventa->Fecha = date('Y-m-d'); 
-            $notaventa->Montototal = $request->input('total');
+            $notaventa->fecha = date('Y-m-d'); 
+            $notaventa->montototal = $request->input('total');
             $notaventa->idUsuario = $idUsuario;
             $notaventa->save();
             foreach ($cartItems as $item) {
                 $detalleventa = new Detalleventa();
-                $detalleventa->Cantidad = $item['cantidad'];
+                $detalleventa->cantidad = $item['cantidad'];
                 $detalleventa->idProducto = $item['id'];
                 $detalleventa->idNotaventa = $notaventa->id;
                 $detalleventa->save();
@@ -68,7 +68,7 @@ class NotaVentaController extends Controller
         $productos = DB::table('producto')
             ->join('detalleventa', 'producto.id', '=', 'detalleventa.idProducto')
             ->where('detalleventa.idNotaventa', $notaventa->id)
-            ->select('producto.Nombre', 'producto.Precio', 'producto.Url', 'detalleventa.Cantidad')
+            ->select('producto.nombre', 'producto.precio', 'producto.url', 'detalleventa.cantidad')
             ->get();
         
         if (Auth::user()->rol === 'cliente') {
@@ -88,9 +88,9 @@ class NotaVentaController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->validate([
-            'Fecha' => 'required',
+            'fecha' => 'required',
             'Id' => 'required',
-            'Montototal' => 'required',
+            'montototal' => 'required',
             'UsuarioID' => 'required',
         ]);
 

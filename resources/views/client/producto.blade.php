@@ -4,7 +4,7 @@
     <select id="categoriaSelect" class="custom-select">
         <option value="todas">Todas las categorías</option>
         @foreach ($categorias as $categoria)
-            <option value="{{ $categoria->id }}">{{ $categoria->Nombre }}</option>
+            <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
         @endforeach
     </select>
 
@@ -13,13 +13,13 @@
         @foreach ($productos as $producto)
             <li class="product" data-categoria="{{ $producto->idCategoria }}">
                 <div class="product-image">
-                    <img src="{{ $producto->Url }}" alt="{{ $producto->Nombre }}">
+                    <img src="{{ $producto->url }}" alt="{{ $producto->nombre }}">
                 </div>
-                <h2 class="product-title">{{ $producto->Nombre }}</h2>
+                <h2 class="product-title">{{ $producto->nombre }}</h2>
                 <div class="product-info">
-                    <p class="product-price">{{ $producto->Precio }} Bs</p>
-                    <p class="product-stock">Stock: {{ $producto->Stock }}</p>
-                    <input type="number" class="quantity-input" min="1" max="{{ $producto->Stock }}">
+                    <p class="product-price">{{ $producto->precio }} Bs</p>
+                    <p class="product-stock">Stock: {{ $producto->stock }}</p>
+                    <input type="number" class="quantity-input" min="1" max="{{ $producto->stock }}">
                     <button class="add-to-cart" data-producto="{{ $producto }}">Agregar al Carrito</button>
                 </div>
             </li>

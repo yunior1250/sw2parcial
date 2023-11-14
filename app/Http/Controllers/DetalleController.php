@@ -27,7 +27,7 @@ class DetalleController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'Cantidad' => 'required',
+            'cantidad' => 'required',
             'ProductoID' => 'required',
             'NotaventaID' => 'required',
         ]);

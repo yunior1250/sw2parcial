@@ -15,13 +15,13 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="Nombre">Nombre:</label>
-                            <input type="text" name="Nombre" id="Nombre" class="form-control">
+                            <label for="nombre">nombre:</label>
+                            <input type="text" name="nombre" id="nombre" class="form-control">
                         </div>
 
                         <div class="col-md-6">
-                            <label for="Precio">Precio:</label>
-                            <input type="text" name="Precio" id="Precio" class="form-control">
+                            <label for="precio">precio:</label>
+                            <input type="text" name="precio" id="precio" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -30,12 +30,12 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="Stock">Stock:</label>
-                            <input type="text" name="Stock" id="Stock" class="form-control">
+                            <label for="stock">stock:</label>
+                            <input type="text" name="stock" id="stock" class="form-control">
                         </div>
                         <div class="col-md-6">
-                            <label for="Url">Subir Imagen:</label>
-                            <input type="file" name="Url" id="Url" class="form-control">
+                            <label for="url">Subir Imagen:</label>
+                            <input type="file" name="url" id="url" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                     <label for="idCategoria">Categoría:</label>
                     <select name="idCategoria" id="idCategoria" class="form-control">
                         @foreach ($categorias as $categoria)
-                            <option value="{{ $categoria->id }}">{{ $categoria->Nombre }}</option>
+                            <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
                         @endforeach
                     </select>
                 </div>

@@ -66,10 +66,10 @@ document.addEventListener("DOMContentLoaded", function () {
         button.addEventListener("click", function () {
             const productData = JSON.parse(button.getAttribute("data-producto"));
             const productId = productData.id;
-            const productName = productData.Nombre;
-            const productUrl = productData.Url;
-            const productPrice = productData.Precio;
-            const productStock = productData.Stock;
+            const productName = productData.nombre;
+            const productUrl = productData.url;
+            const productPrice = productData.precio;
+            const productStock = productData.stock;
 
             const quantityInput = button.parentElement.querySelector(".quantity-input");
             const quantity = parseInt(quantityInput.value, 10);
