@@ -51,7 +51,7 @@ class NotaVentaController extends Controller
                 $detalleventa->save();
                 $producto = Producto::find($item['id']); // Obtener el producto por su ID
                 if ($producto) {
-                    $producto->Stock = $producto->Stock - $item['cantidad'];
+                    $producto->stock = $producto->stock - $item['cantidad'];
                     $producto->save(); // Actualizar el stock del producto
                 }
             }
